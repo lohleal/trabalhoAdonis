@@ -7,14 +7,17 @@ import DataTable from '../../components/datatable';
 import { Client } from '../../api/client'
 import UserContext from '../../contexts/UserContext'
 import { getDataUser } from '../../service/UserService';
+import { getPermissions } from '../../service/PermissionService';
+
 
 export default function Home() {
 
     const [data, setData] = useState([])
     const [load, setLoad] = useState(true)
     const navigate = useNavigate();
-    const { user } = useContext(UserContext);
+    // const { user } = useContext(UserContext);
     const dataUser  = getDataUser()
+    const permissions = getPermissions()
 
     function fetchData() {
 
@@ -40,8 +43,8 @@ export default function Home() {
     function verifyPermission() {
         // Não Autenticado   
         if(!dataUser) navigate('/login')
-        // Autenticado   
-        else if(user.id === 0) navigate('/error')
+        // Não Autorizado (rota anterior)
+        else if(permissions.listDisciplina === 0) navigate(-1)
     }
 
     useEffect(() => {

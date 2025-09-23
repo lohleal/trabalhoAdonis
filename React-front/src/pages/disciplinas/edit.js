@@ -72,7 +72,7 @@ export default function Edit() {
         // Não Autenticado   
         if(!dataUser) navigate('/login')
         // Não Autorizado (rota anterior)
-        else if(permissions.listCurso === 0) navigate(-1)
+        else if(permissions.editDisciplina === 0) navigate(-1)
     }
     
     useEffect(() => {

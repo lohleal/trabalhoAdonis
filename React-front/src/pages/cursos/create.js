@@ -40,7 +40,7 @@ export default function Create() {
        // Não Autenticado   
         if(!dataUser) navigate('/login')
         // Não Autorizado (rota anterior)
-        else if(permissions.listCurso === 0) navigate(-1)
+        else if(permissions.createCurso === 0) navigate(-1)
     }
     
     useEffect(() => {
