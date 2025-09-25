@@ -1,5 +1,4 @@
-// React Router
-import { createBrowserRouter, Navigate} from "react-router-dom"
+import { createBrowserRouter, Navigate } from "react-router-dom"
 import Login from './pages/login'
 import Error from './pages/error'
 import Home from './pages/home'
@@ -9,7 +8,12 @@ import CursosEdit from './pages/cursos/edit'
 import Disciplinas from './pages/disciplinas'
 import DisciplinasCreate from './pages/disciplinas/create'
 import DisciplinasEdit from './pages/disciplinas/edit'
-
+import Alunos from './pages/alunos'
+import AlunosCreate from './pages/alunos/create'
+import AlunosEdit from './pages/alunos/edit'
+import Matriculas from './pages/matriculas'
+import MatriculasCreate from './pages/matriculas/create'
+import MatriculasEdit from './pages/matriculas/edit'
 
 const router = createBrowserRouter([
     { 
@@ -51,6 +55,30 @@ const router = createBrowserRouter([
     {
         path: "/disciplinas/edit", 
         element: <DisciplinasEdit />,
+    },
+    {
+        path: "/alunos", 
+        element: <Alunos />,
+    },
+    {
+        path: "/alunos/create", 
+        element: <AlunosCreate />,
+    },
+    {
+        path: "/alunos/edit", 
+        element: <AlunosEdit />,
+    },
+    {
+        path: "/matriculas", 
+        element: <Matriculas />,
+    },
+    {
+        path: "/matriculas/create", 
+        element: <MatriculasCreate />,
+    },
+    {
+        path: "/matriculas/edit", 
+        element: <MatriculasEdit />,
     },
 ])
 

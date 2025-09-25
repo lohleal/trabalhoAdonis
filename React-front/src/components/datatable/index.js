@@ -17,19 +17,17 @@ export default function DataTable(props) {
   }
 
   function remove(item) {
+    // Supondo que o backend aceita aluno_id + disciplina_id
+    const url = `matriculas?aluno_id=${item.aluno_id}&disciplina_id=${item.disciplina_id}`;
+    Client.delete(url)
+        .then(() => setShow(true))
+        .catch(console.error);
+}
 
-    const url = `${props.resource}/${item.id}`
-    Client.delete(url).then(response => {
-      setShow(true);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
 
   const handleClose = () => { 
     setShow(false)
-    navigate(0); // reload page
+    navigate(0); 
   }
 
   return (
