@@ -58,27 +58,32 @@ export default function EditAluno() {
                     <OrbitProgress variant="spokes" color="#32cd32" size="medium" />
                   </Container>
                 : <Container className='mt-2'>
-                    <div className="d-flex gap-3 align-items-end">
-                        <div className="flex-grow-1">
-                            <Label>Nome</Label>
-                            <Input type="text" value={nome} onChange={e => setNome(e.target.value)} />
-                        </div>
-                        <div>
-                            <Label>Curso</Label>
-                            <Select value={cursoId} onChange={e => setCursoId(e.target.value)}>
-                                <option value="">Selecione o curso</option>
-                                {cursos.map(c => (
-                                    <option key={c.id} value={c.id}>{c.nome}</option>
-                                ))}
-                            </Select>
-                        </div>
+                <div>
+                    <div className="flex-grow-1">
+                        <Label>Nome</Label>
+                        <Input 
+                            type="text" 
+                            value={nome} 
+                            onChange={e => setNome(e.target.value)} 
+                        />
                     </div>
-
-                    <div className="mt-3">
-                        <Submit value="Voltar" onClick={() => navigate('/alunos')} />
-                        <Submit value="Alterar" onClick={updateAluno} />
+                    <div>
+                        <Label>Curso</Label>
+                        <Select value={cursoId} onChange={e => setCursoId(e.target.value)}>
+                            <option value="">Selecione o curso</option>
+                            {cursos.map(c => (
+                                <option key={c.id} value={c.id}>{c.nome}</option>
+                            ))}
+                        </Select>
                     </div>
-                  </Container>
+                </div>
+            
+                <div className="mt-3">
+                    <Submit value="Voltar" onClick={() => navigate('/alunos')} />
+                    <Submit value="Alterar" onClick={updateAluno} />
+                </div>
+            </Container>
+            
             }
 
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
