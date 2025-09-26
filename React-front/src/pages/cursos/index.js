@@ -5,7 +5,7 @@ import { OrbitProgress } from "react-loading-indicators";
 import NavigationBar from '../../components/navigationbar';
 import DataTable from '../../components/datatable';
 import { Client } from '../../api/client'
-// import UserContext from '../../contexts/UserContext'
+import UserContext from '../../contexts/UserContext'
 import { getPermissions } from '../../service/PermissionService';
 import { getDataUser } from '../../service/UserService';
 
@@ -14,7 +14,7 @@ export default function Home() {
     const [data, setData] = useState([])
     const [load, setLoad] = useState(true)
     const navigate = useNavigate();
-    //const { user } = useContext(UserContext)
+    const { user } = useContext(UserContext)
     const permissions = getPermissions()
     const dataUser  = getDataUser()
 

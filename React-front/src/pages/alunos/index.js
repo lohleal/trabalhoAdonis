@@ -17,19 +17,16 @@ export default function HomeAluno() {
 
     function fetchData() {
         setLoad(true);
-        setTimeout(() => {
-            Client.get('alunos')
-                .then(res => {
-                    
-                    const alunos = res.data.data.map(a => ({
-                        ...a,
-                        curso_nome: a.curso?.nome || '—'
-                    }));
-                    setData(alunos);
-                })
-                .catch(console.error)
-                .finally(() => setLoad(false));
-        }, 500);
+        Client.get('alunos')
+            .then(res => {
+                const alunos = res.data.data.map(a => ({
+                    ...a,
+                    curso_nome: a.curso?.nome || '—'
+                }));
+                setData(alunos);
+            })
+            .catch(console.error)
+            .finally(() => setLoad(false));
     }
 
     function verifyPermission() {
@@ -41,6 +38,22 @@ export default function HomeAluno() {
         verifyPermission();
         fetchData();
     }, []);
+
+    // REMOVE FUNCIONAL
+    function removeAluno(aluno) {
+        if (!window.confirm(`Deseja realmente excluir o aluno "${aluno.nome}"?`)) return;
+
+        const alunoId = aluno.id || aluno.aluno_id;
+        Client.delete(`alunos/${alunoId}`)
+            .then(() => {
+                setData(prevData => prevData.filter(a => (a.id || a.aluno_id) !== alunoId));
+                alert('Aluno removido com sucesso!');
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Erro ao tentar remover o aluno!');
+            });
+    }
 
     return (
         <>
@@ -54,10 +67,12 @@ export default function HomeAluno() {
                         title="Alunos Registrados" 
                         rows={['Nome', 'Curso', 'Ações']}
                         hide={[false, false, false]}
-                        data={data}
+                        data={data}       
+                        setData={setData} 
                         keys={['nome', 'curso_nome']} 
                         resource='alunos'
                         crud={['viewAluno', 'createAluno', 'editAluno', 'deleteAluno']}
+                        remove={removeAluno} // <-- passa a função
                     />
                   </Container>
             }
