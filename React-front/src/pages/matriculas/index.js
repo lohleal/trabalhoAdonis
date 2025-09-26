@@ -35,13 +35,36 @@ export default function HomeMatricula() {
                 setData(matriculas);
             })
             .catch(console.error)
-            .finally(() => setLoad(false));
+         
+           .finally(() => setLoad(false));
+    }
+
+    function verifyPermission() {
+   
+        if(!dataUser) navigate('/login')
+        
+        else if(permissions.listDisciplina === 0) navigate(-1)
     }
 
     useEffect(() => {
         verifyPermission();
         fetchData();
     }, []);
+
+    function removeMatricula(matricula) {
+        const alunoId = matricula.aluno_id;
+        const disciplinaId = matricula.disciplina_id;
+
+        Client.delete(`matriculas/${alunoId}/${disciplinaId}`)
+            .then(() => {
+                setData(prevData => 
+                    prevData.filter(m => !(m.aluno_id === alunoId && m.disciplina_id === disciplinaId))
+                );
+            })
+            .catch(console.error);
+    }
+    
+    
 
     return (
         <>
@@ -52,14 +75,17 @@ export default function HomeMatricula() {
                   </Container>
                 : <Container className='mt-2'>
                     <DataTable
-                        title="Matrículas Registradas"
-                        rows={['Aluno', 'Disciplina', 'Ações']}
-                        hide={[false, false, false]}
-                        data={data}
-                        keys={['aluno_nome', 'disciplina_nome']}
-                        resource='matriculas'
-                        crud={['viewMatricula', 'createMatricula', 'editMatricula', 'deleteMatricula']}
-                    />
+    title="Matrículas Registradas"
+    rows={['Aluno', 'Disciplina', 'Ações']}
+    hide={[false, false, false]}
+    data={data}
+    setData={setData} // <-- adicionar
+    keys={['aluno_nome', 'disciplina_nome']}
+    resource='matriculas'
+    crud={['viewMatricula', 'createMatricula', 'editMatricula', 'deleteMatricula']}
+    remove={removeMatricula} // <-- adicionar
+/>
+
                 </Container>
             }
         </>

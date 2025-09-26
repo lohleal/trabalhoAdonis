@@ -41,19 +41,18 @@ export default function HomeAluno() {
 
     // REMOVE FUNCIONAL
     function removeAluno(aluno) {
-        if (!window.confirm(`Deseja realmente excluir o aluno "${aluno.nome}"?`)) return;
 
         const alunoId = aluno.id || aluno.aluno_id;
         Client.delete(`alunos/${alunoId}`)
             .then(() => {
                 setData(prevData => prevData.filter(a => (a.id || a.aluno_id) !== alunoId));
-                alert('Aluno removido com sucesso!');
             })
             .catch(err => {
                 console.error(err);
-                alert('Erro ao tentar remover o aluno!');
             });
+            
     }
+    
 
     return (
         <>
