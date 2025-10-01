@@ -65,7 +65,6 @@ export default function HomeMatricula() {
     }
     
     
-
     return (
         <>
             <NavigationBar />

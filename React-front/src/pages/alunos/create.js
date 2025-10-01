@@ -17,6 +17,12 @@ export default function CreateAluno() {
     const permissions = getPermissions();
     const dataUser = getDataUser();
 
+    
+    function verifyPermission() {
+        if(!dataUser) navigate('/login');
+        else if(permissions.createAluno === 0) navigate(-1);
+    }
+    
     function fetchData() {
         setLoad(true);
         setTimeout(() => {
@@ -27,22 +33,17 @@ export default function CreateAluno() {
         }, 500);
     }
 
-    function verifyPermission() {
-        if(!dataUser) navigate('/login');
-        else if(permissions.createAluno === 0) navigate(-1);
-    }
-
-    useEffect(() => {
-        verifyPermission();
-        fetchData();
-    }, []);
-
     function sendData() {
         const aluno = { nome, curso_id: cursoId };
         Client.post('alunos', aluno)
             .then(() => navigate('/alunos'))
             .catch(console.error);
     }
+
+    useEffect(() => {
+        verifyPermission();
+        fetchData();
+    }, []);
 
     return (
         <>

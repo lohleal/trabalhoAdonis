@@ -12,6 +12,8 @@ export default function CreateMatricula() {
     const navigate = useNavigate();
     const location = useLocation();
     const preAluno = location.state?.aluno;
+    const permissions = getPermissions();
+    const dataUser = getDataUser();
 
     const [alunos, setAlunos] = useState([]);
     const [alunoId, setAlunoId] = useState(preAluno?.id || '');
@@ -19,15 +21,11 @@ export default function CreateMatricula() {
     const [disciplinaId, setDisciplinaId] = useState('');
     const [load, setLoad] = useState(true);
 
-    const permissions = getPermissions();
-    const dataUser = getDataUser();
-
     function verifyPermission() {
         if (!dataUser) navigate('/login');
         else if (permissions.createMatricula === 0) navigate(-1);
     }
 
-    // Buscar alunos
     function fetchAlunos() {
         Client.get('alunos')
             .then(res => {
@@ -38,7 +36,6 @@ export default function CreateMatricula() {
             .finally(() => setLoad(false));
     }
 
-    // Buscar todas as disciplinas (sem filtrar por curso)
     function fetchDisciplinas() {
         Client.get('disciplinas')
             .then(res => setDisciplinas(res.data.data))

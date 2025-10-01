@@ -39,7 +39,7 @@ export default function HomeAluno() {
         fetchData();
     }, []);
 
-    // REMOVE FUNCIONAL
+
     function removeAluno(aluno) {
 
         const alunoId = aluno.id || aluno.aluno_id;
@@ -52,7 +52,6 @@ export default function HomeAluno() {
             });
             
     }
-    
 
     return (
         <>
