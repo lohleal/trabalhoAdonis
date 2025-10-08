@@ -17,6 +17,16 @@ export default class extends BaseSeeder {
           nome: `Luiz Eduardo (${curso.nome})`,
           curso_id: curso.id,
         },
+        {
+          nome: 'Fulano',
+          curso_id: curso.id,
+          email: 'fulano@email.com',
+          cidade: 'SP',
+          estado: 'SP',
+          rua: 'Rua A',
+          cpf: '123.456.789-09',
+          nCasa: 123
+        },
       ])
     }
   }

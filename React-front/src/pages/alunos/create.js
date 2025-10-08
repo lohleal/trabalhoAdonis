@@ -10,6 +10,13 @@ import { getDataUser } from '../../service/UserService';
 
 export default function CreateAluno() {
     const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
+    const [cidade, setCidade] = useState('');
+    const [estado, setEstado] = useState('');
+    const [rua, setRua] = useState('');
+    const [nCasa, setNCasa] = useState('');
+    const [cpf, setCpf] = useState('');
+
     const [cursoId, setCursoId] = useState('');
     const [cursos, setCursos] = useState([]);
     const [load, setLoad] = useState(true);
@@ -34,7 +41,16 @@ export default function CreateAluno() {
     }
 
     function sendData() {
-        const aluno = { nome, curso_id: cursoId };
+        const aluno = { 
+            nome, 
+            curso_id: Number(cursoId), 
+            email, 
+            cidade, 
+            estado, 
+            rua, 
+            cpf, 
+            nCasa: Number(nCasa) };
+
         Client.post('alunos', aluno)
             .then(() => navigate('/alunos'))
             .catch(console.error);
@@ -50,7 +66,7 @@ export default function CreateAluno() {
             <NavigationBar />
             {load 
                 ? <Container className="d-flex justify-content-center mt-5">
-                    <OrbitProgress variant="spokes" color="#32cd32" size="medium" />
+                    <OrbitProgress variant="spokes" color="#d6add6ff" size="medium" />
                   </Container>
                 : <Container className='mt-2'>
                     <div>
@@ -62,6 +78,14 @@ export default function CreateAluno() {
                                 onChange={e => setNome(e.target.value)}
                             />
                         </div>
+                        <div className="flex-grow-1">
+                            <Label>Cpf</Label>
+                            <Input
+                                type="text" 
+                                value={cpf}
+                                onChange={e => setCpf(e.target.value)}
+                            />
+                        </div>
                         <div>
                             <Label>Curso</Label>
                             <Select value={cursoId} onChange={e => setCursoId(e.target.value)}>
@@ -71,14 +95,58 @@ export default function CreateAluno() {
                                 ))}
                             </Select>
                         </div>
+                        <div className="flex-grow-1">
+                            <Label>Email</Label>
+                            <Input
+                                type="text" 
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <Label>ENDEREÇO</Label>
+                        <div className="flex-grow-1">
+                            <Label>Cidade</Label>
+                            <Input
+                                type="text" 
+                                value={cidade}
+                                onChange={e => setCidade(e.target.value)}
+                            />
+                        </div>
+                        <div className="flex-grow-1">
+                            <Label>Estado</Label>
+                            <Input
+                                type="text" 
+                                value={estado}
+                                onChange={e => setEstado(e.target.value)}
+                            />
+                        </div>
+                        <div className="flex-grow-1">
+                            <Label>Rua</Label>
+                            <Input
+                                type="text" 
+                                value={rua}
+                                onChange={e => setRua(e.target.value)}
+                            />
+                        </div>
+                        <div className="flex-grow-1">
+                            <Label>Nº da Casa</Label>
+                            <Input
+                                type="number" 
+                                value={nCasa}
+                                onChange={e => setNCasa(e.target.value)}
+                            />
+                        </div>
                     </div>
 
                     <div className="mt-3">
                         <Submit value="Voltar" onClick={() => navigate('/alunos')} />
                         <Submit value="Cadastrar" onClick={sendData} />
                     </div>
+
                   </Container>
             }
         </>
     );
 }
+
+

@@ -12,7 +12,25 @@ export default class Aluno extends BaseModel {
   declare nome: string
 
   @column()
+  declare email: string
+
+  @column()
   declare curso_id: number
+
+  @column()
+  declare cidade: string
+
+  @column()
+  declare estado: string
+
+  @column()
+  declare rua: string
+
+  @column()
+  declare nCasa: number
+
+  @column()
+  declare cpf: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

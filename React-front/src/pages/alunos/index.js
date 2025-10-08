@@ -63,11 +63,11 @@ export default function HomeAluno() {
                 : <Container className='mt-2'>
                     <DataTable 
                         title="Alunos Registrados" 
-                        rows={['Nome', 'Curso', 'Ações']}
-                        hide={[false, false, false]}
+                        rows={['Nome', 'Curso', 'Email', 'Ações']}
+                        hide={[false, false, false, false]}
                         data={data}       
                         setData={setData} 
-                        keys={['nome', 'curso_nome']} 
+                        keys={['nome', 'curso_nome', 'email']} 
                         resource='alunos'
                         crud={['viewAluno', 'createAluno', 'editAluno', 'deleteAluno']}
                         remove={removeAluno} // <-- passa a função
