@@ -51,6 +51,11 @@ export default class AuthController {
 
       logger.info(`${email} - ${password}`)
 
+      const veriuser = await User.findBy('email', email);
+      console.log('User encontrado?', veriuser ? veriuser.id : 'NÃO');  // Debug
+      //const verifiedUser = await User.verifyCredentials(email, password);
+
+
       const user = await User.verifyCredentials(email, password)
 
       // Criar token de acesso

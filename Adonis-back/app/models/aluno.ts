@@ -2,6 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, column, belongsTo, manyToMany } from '@adonisjs/lucid/orm'
 import Curso from './curso.js'
 import Disciplina from './disciplina.js'
+import User from './user.js'
 import type { BelongsTo, ManyToMany } from '@adonisjs/lucid/types/relations'
 
 export default class Aluno extends BaseModel {
@@ -33,7 +34,8 @@ export default class Aluno extends BaseModel {
   declare cpf: string
 
   @column()
-  declare codigo: number
+  public userId!: number
+
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
@@ -47,4 +49,8 @@ export default class Aluno extends BaseModel {
 
   @manyToMany(() => Disciplina, { pivotTable: 'matriculas' })
   declare disciplinas: ManyToMany<typeof Disciplina>
+
+  @belongsTo(() => User)
+  public user!: BelongsTo<typeof User>
+
 }

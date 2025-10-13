@@ -43,8 +43,10 @@ export default class AlunosController {
       const aluno = await AlunoService.criarAluno(payload)
       return response.status(201).json({ message: 'OK', data: aluno })
     } catch (error) {
-      return response.status(500).json({ message: 'ERROR' })
-    }
+  console.error(error)
+  return response.status(500).json({ message: error.message || 'ERROR' })
+}
+
   }
 
   async show({ params, response, auth, bouncer }: HttpContext) {

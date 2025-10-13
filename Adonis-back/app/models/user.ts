@@ -43,6 +43,8 @@ export default class User extends compose(BaseModel, AuthFinder) {
   static accessTokens = DbAccessTokensProvider.forModel(User)
 
   // Relacionamentos
-  @belongsTo(() => Papel, { foreignKey: 'curso_id' })
+  @belongsTo(() => Papel, { foreignKey: 'papel_id' })
   declare papel: BelongsTo<typeof Papel>
+
+  
 }

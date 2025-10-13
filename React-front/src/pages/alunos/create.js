@@ -16,7 +16,7 @@ export default function CreateAluno() {
     const [rua, setRua] = useState('');
     const [nCasa, setNCasa] = useState('');
     const [cpf, setCpf] = useState('');
-    const [codigo, setCodigo] = useState('');
+    const [senha, setSenha] = useState('');
 
     const [cursoId, setCursoId] = useState('');
     const [cursos, setCursos] = useState([]);
@@ -48,22 +48,26 @@ export default function CreateAluno() {
     }
 
     function sendData() {
+        console.log('Senha enviada:', senha);
         const aluno = {
             nome,
             curso_id: Number(cursoId),
             email,
+            senha,
             cidade,
             estado,
             rua,
             cpf,
-            nCasa: Number(nCasa)
-            codigo: gerarCodigoAleatorio()
+            nCasa: Number(nCasa),
+            
         };
 
         Client.post('alunos', aluno)
             .then(() => navigate('/alunos'))
             .catch(console.error);
     }
+
+    
 
     useEffect(() => {
         verifyPermission();
@@ -112,6 +116,16 @@ export default function CreateAluno() {
                                 onChange={e => setEmail(e.target.value)}
                             />
                         </div>
+
+                        <div className="flex-grow-1">
+                            <Label>Senha</Label>
+                            <Input
+                                type="text"
+                                value={senha}
+                                onChange={e => setSenha(e.target.value)}
+                            />
+                        </div>
+
                         <Label>ENDEREÇO</Label>
                         <div className="flex-grow-1">
                             <Label>Cidade</Label>

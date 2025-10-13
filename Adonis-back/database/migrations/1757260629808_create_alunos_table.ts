@@ -16,6 +16,10 @@ export default class extends BaseSchema {
       table.integer('curso_id').unsigned().references('id').inTable('cursos')
       table.timestamp('created_at')
       table.timestamp('updated_at')
+
+
+      // coluna user_id como chave estrangeira
+      table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE')
     })
   }
 
