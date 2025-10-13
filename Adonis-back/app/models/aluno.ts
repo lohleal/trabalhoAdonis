@@ -32,6 +32,9 @@ export default class Aluno extends BaseModel {
   @column()
   declare cpf: string
 
+  @column()
+  declare codigo: number
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
