@@ -39,6 +39,7 @@ export default class AlunosController {
       if (await bouncer.with(AlunoPolicy).denies('create')) {
         return response.forbidden({ message: 'Você não tem permissão para criar alunos' })
       }
+      
 
       const aluno = await AlunoService.criarAluno(payload)
       return response.status(201).json({ message: 'OK', data: aluno })
