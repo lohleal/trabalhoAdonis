@@ -11,7 +11,7 @@ export const createAluno = vine.compile(
     rua: vine.string().trim().minLength(1),
     cpf: vine.string().trim().minLength(1),
     nCasa: vine.number().positive().withoutDecimals(),
-    senha: vine.string().minLength(6).trim(),
+    senha: vine.string().minLength(1).trim(),
   })
 )
 // Valida a atualização dos alunos (update)
