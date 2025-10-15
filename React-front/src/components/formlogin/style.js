@@ -20,7 +20,7 @@ export const BoxItem = styled.div`
     display: none;
 
     @media (max-width: 768px) {
-        display: block;
+        display: none;
     }
 `
 
@@ -111,7 +111,7 @@ export const Submit = styled.input.attrs({ type: 'submit' })`
     box-sizing: border-box;
     width: 180px;
     height: 35px;
-    background-color: lightseagreen;
+    background-color: #4D0E0E;
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -120,6 +120,7 @@ export const Submit = styled.input.attrs({ type: 'submit' })`
     border: 0px;
     cursor: grab;
 `
+
 
 export const LinkForgot = styled.div`
     text-decoration: none;
