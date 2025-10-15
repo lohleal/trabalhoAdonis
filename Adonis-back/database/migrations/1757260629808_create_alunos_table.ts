@@ -13,7 +13,7 @@ export default class extends BaseSchema {
       table.string('estado')
       table.string('rua')
       table.integer('n_casa').unsigned()
-      table.integer('curso_id').unsigned().references('id').inTable('cursos')
+      //table.integer('curso_id').unsigned().references('id').inTable('cursos')
       table.timestamp('created_at')
       table.timestamp('updated_at')
 

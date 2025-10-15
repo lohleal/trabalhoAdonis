@@ -1,12 +1,14 @@
 import Aluno from '#models/aluno'
-import Curso from '#models/curso'
+//import Curso from '#models/curso'
 import User from '#models/user'
 import hash from '@adonisjs/core/services/hash'
 
 export default class AlunoService {
   static async listarAlunos() {
-    return await Aluno.query().preload('curso').preload('disciplinas')
+    return await Aluno.query()
+    // Sem preload de curso ou disciplinas
   }
+  
 
   static async criarAluno(payload: any) {
     const {
@@ -14,7 +16,7 @@ export default class AlunoService {
       email,
       senha,
       cpf,
-      curso_id,
+      //curso_id,
       cidade,
       estado,
       rua,
@@ -36,7 +38,7 @@ export default class AlunoService {
       nome,
       email,
       cpf,
-      curso_id,
+      //curso_id,
       cidade,
       estado,
       rua,
@@ -50,14 +52,12 @@ export default class AlunoService {
   static async buscarAluno(id: number) {
     return await Aluno.query()
       .where('id', id)
-      .preload('curso')
-      .preload('disciplinas')
       .firstOrFail()
   }
 
-  static async listarCursos() {
-    return await Curso.all()
-  }
+  // static async listarCursos() {
+  //   return await Curso.all()
+  // }
 
   static async atualizarAluno(id: number, payload: any) {
     const aluno = await Aluno.findOrFail(id)

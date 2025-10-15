@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, belongsTo, manyToMany } from '@adonisjs/lucid/orm'
-import Curso from './curso.js'
-import Disciplina from './disciplina.js'
+//import Curso from './curso.js'
+//import Disciplina from './disciplina.js'
 import User from './user.js'
 import type { BelongsTo, ManyToMany } from '@adonisjs/lucid/types/relations'
 
@@ -15,8 +15,8 @@ export default class Aluno extends BaseModel {
   @column()
   declare email: string
 
-  @column()
-  declare curso_id: number
+  //@column()
+  //declare curso_id: number
 
   @column()
   declare cidade: string
@@ -44,11 +44,11 @@ export default class Aluno extends BaseModel {
   declare updatedAt: DateTime
 
   // Relacionamentos
-  @belongsTo(() => Curso, { foreignKey: 'curso_id' })
-  declare curso: BelongsTo<typeof Curso>
+  //@belongsTo(() => Curso, { foreignKey: 'curso_id' })
+  //declare curso: BelongsTo<typeof Curso>
 
-  @manyToMany(() => Disciplina, { pivotTable: 'matriculas' })
-  declare disciplinas: ManyToMany<typeof Disciplina>
+  //@manyToMany(() => Disciplina, { pivotTable: 'matriculas' })
+  //declare disciplinas: ManyToMany<typeof Disciplina>
 
   @belongsTo(() => User)
   public user!: BelongsTo<typeof User>
