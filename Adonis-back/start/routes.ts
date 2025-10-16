@@ -28,6 +28,7 @@ router.group(() => {
   router.resource('alunos', '#controllers/alunos_controller')
 }).use([middleware.auth()])
 
+
 // Matrículas
 router.group(() => {
   router.get('matriculas', '#controllers/matriculas_controller.index')

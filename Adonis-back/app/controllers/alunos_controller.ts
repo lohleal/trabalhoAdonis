@@ -3,6 +3,7 @@ import { createAluno, updateAluno } from '#validators/aluno'
 import AlunoPolicy from '#policies/aluno_policy'
 import AlunoService from '#services/aluno_service'
 
+
 export default class AlunosController {
   async index({ response, auth, bouncer }: HttpContext) {
     try {
@@ -18,19 +19,33 @@ export default class AlunosController {
     }
   }
 
-  async create({ auth, bouncer, response }: HttpContext) {
-    try {
-      const user = auth.getUserOrFail()
-      if (await bouncer.with(AlunoPolicy).denies('create')) {
-        return response.forbidden({ message: 'Você não tem permissão para criar aluno' })
-      }
+  async create({ request, auth, bouncer, response }: HttpContext) {
+  try {
+    const user = await auth.getUserOrFail()
 
-      //const cursos = await AlunoService.listarCursos()
-      return response.status(200).json({ message: 'OK' })
-    } catch (error) {
-      return response.status(500).json({ message: 'ERROR' })
+    if (await bouncer.with(AlunoPolicy).denies('create')) {
+      return response.forbidden({ message: 'Você não tem permissão para criar aluno' })
     }
+
+    // Validação dos dados enviados
+    const payload = await request.validateUsing(createAluno)
+
+    // Cria o aluno usando o service
+    const aluno = await AlunoService.criarAluno(payload)
+
+    return response.status(201).json({ message: 'Aluno criado com sucesso', data: aluno })
+  } catch (error: any) {
+    // Verifica se é erro de validação
+    if (error.messages) {
+      console.error('Erro de validação:', error.messages)
+      return response.status(422).json({ errors: error.messages })
+    }
+
+    console.error('Erro inesperado:', error)
+    return response.status(500).json({ message: 'Erro interno no servidor' })
   }
+}
+
 
   async store({ request, response, auth, bouncer }: HttpContext) {
     const payload = await request.validateUsing(createAluno)
@@ -39,14 +54,14 @@ export default class AlunosController {
       if (await bouncer.with(AlunoPolicy).denies('create')) {
         return response.forbidden({ message: 'Você não tem permissão para criar alunos' })
       }
-      
+
 
       const aluno = await AlunoService.criarAluno(payload)
       return response.status(201).json({ message: 'OK', data: aluno })
     } catch (error) {
-  console.error(error)
-  return response.status(500).json({ message: error.message || 'ERROR' })
-}
+      console.error(error)
+      return response.status(500).json({ message: error.message || 'ERROR' })
+    }
 
   }
 

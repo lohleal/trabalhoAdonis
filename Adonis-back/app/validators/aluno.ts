@@ -10,7 +10,7 @@ export const createAluno = vine.compile(
     estado: vine.string().trim().minLength(2),
     rua: vine.string().trim().minLength(1),
     cpf: vine.string().trim().minLength(1),
-    nCasa: vine.number().positive().withoutDecimals(),
+    n_casa: vine.number().positive().withoutDecimals(),
     senha: vine.string().minLength(1).trim(),
   })
 )
@@ -24,7 +24,7 @@ export const updateAluno = vine.compile(
     estado: vine.string().trim().minLength(2).optional(),
     rua: vine.string().trim().minLength(1).optional(),
     cpf: vine.string().trim().minLength(1).optional(),
-    nCasa: vine.number().positive().withoutDecimals().optional(),
+    n_casa: vine.number().positive().withoutDecimals().optional(),
     
   })
 )

@@ -18,7 +18,7 @@ export default class AlunoService {
       cidade,
       estado,
       rua,
-      nCasa,
+      n_casa,
     } = payload
 
     console.log('Senha recebida no backend:', senha)
@@ -35,13 +35,7 @@ export default class AlunoService {
     const numeroConta = ContaService.gerarNumeroConta()
     const numeroAgencia = ContaService.gerarNumeroAgencia()
 
-    // Cria a conta
-    const conta = await Conta.create({
-      n_conta: numeroConta,
-      n_agencia: numeroAgencia,
-      saldo: 0, // saldo inicial
-    })
-
+    
     // Cria o aluno, associando a conta criada
     const aluno = await Aluno.create({
       nome,
@@ -50,11 +44,20 @@ export default class AlunoService {
       cidade,
       estado,
       rua,
-      nCasa,
+      n_casa,
+      user_id: user.id,   // associa o usuário
+      //conta_id: conta.id, // associa a conta
       //userId: user.id, // Associa o usuário
-      conta_id: conta.id, // Associa a conta criada ao aluno
+      
     })
-
+    
+    // Cria a conta
+    const conta = await Conta.create({
+      n_conta: numeroConta,
+      n_agencia: numeroAgencia,
+      saldo: 0, // saldo inicial
+      aluno_id: aluno.id,
+    })
     return aluno
   }
 
