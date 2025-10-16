@@ -53,7 +53,7 @@ export default class AuthController {
 
       const veriuser = await User.findBy('email', email);
       console.log('User encontrado?', veriuser ? veriuser.id : 'NÃO');  // Debug
-      //const verifiedUser = await User.verifyCredentials(email, password);
+      const verifiedUser = await User.verifyCredentials(email, password);
 
 
       const user = await User.verifyCredentials(email, password)

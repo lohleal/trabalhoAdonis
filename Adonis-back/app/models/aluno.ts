@@ -1,9 +1,10 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo, manyToMany } from '@adonisjs/lucid/orm'
+import { BaseModel, column, belongsTo, hasOne } from '@adonisjs/lucid/orm'
 //import Curso from './curso.js'
 //import Disciplina from './disciplina.js'
 import User from './user.js'
-import type { BelongsTo, ManyToMany } from '@adonisjs/lucid/types/relations'
+import type { BelongsTo, HasOne } from '@adonisjs/lucid/types/relations'
+import Conta from './conta.js'
 
 export default class Aluno extends BaseModel {
   @column({ isPrimary: true })
@@ -15,27 +16,25 @@ export default class Aluno extends BaseModel {
   @column()
   declare email: string
 
-  //@column()
-  //declare curso_id: number
-
+  
   @column()
   declare cidade: string
-
+  
   @column()
   declare estado: string
-
+  
   @column()
   declare rua: string
-
+  
   @column()
   declare nCasa: number
-
+  
   @column()
   declare cpf: string
-
+  
+  
   @column()
-  public userId!: number
-
+  declare conta_id: number
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
@@ -44,8 +43,8 @@ export default class Aluno extends BaseModel {
   declare updatedAt: DateTime
 
   // Relacionamentos
-  //@belongsTo(() => Curso, { foreignKey: 'curso_id' })
-  //declare curso: BelongsTo<typeof Curso>
+  @hasOne(() => Conta, { foreignKey: 'aluno_id' })
+  declare conta: HasOne<typeof Conta>
 
   //@manyToMany(() => Disciplina, { pivotTable: 'matriculas' })
   //declare disciplinas: ManyToMany<typeof Disciplina>

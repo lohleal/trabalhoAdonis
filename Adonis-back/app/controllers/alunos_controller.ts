@@ -25,8 +25,8 @@ export default class AlunosController {
         return response.forbidden({ message: 'Você não tem permissão para criar aluno' })
       }
 
-      const cursos = await AlunoService.listarCursos()
-      return response.status(200).json({ message: 'OK', data: cursos })
+      //const cursos = await AlunoService.listarCursos()
+      return response.status(200).json({ message: 'OK' })
     } catch (error) {
       return response.status(500).json({ message: 'ERROR' })
     }
@@ -71,8 +71,8 @@ export default class AlunosController {
         return response.forbidden({ message: 'Você não tem permissão para alterar aluno' })
       }
 
-      const cursos = await AlunoService.listarCursos()
-      return response.status(200).json({ message: 'OK', data: cursos })
+      //const cursos = await AlunoService.listarCursos()
+      return response.status(200).json({ message: 'OK' })
     } catch (error) {
       return response.status(500).json({ message: 'ERROR' })
     }
