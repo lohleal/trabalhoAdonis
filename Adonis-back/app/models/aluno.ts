@@ -50,5 +50,7 @@ export default class Aluno extends BaseModel {
 
   @belongsTo(() => User)
   public user!: BelongsTo<typeof User>
+  
+  //conta_id: number
 
 }

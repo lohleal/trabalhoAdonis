@@ -14,7 +14,7 @@ export default function CreateAluno() {
     const [cidade, setCidade] = useState('');
     const [estado, setEstado] = useState('');
     const [rua, setRua] = useState('');
-    const [nCasa, setNCasa] = useState('');
+    const [n_casa, setN_casa] = useState('');
     const [cpf, setCpf] = useState('');
     const [senha, setSenha] = useState('');
 
@@ -52,7 +52,7 @@ export default function CreateAluno() {
             estado,
             rua,
             cpf,
-            nCasa: Number(nCasa),
+            n_casa: Number(n_casa),
             
         };
 
@@ -140,8 +140,8 @@ export default function CreateAluno() {
                             <Label>Nº da Casa</Label>
                             <Input
                                 type="number"
-                                value={nCasa}
-                                onChange={e => setNCasa(e.target.value)}
+                                value={n_casa}
+                                onChange={e => setN_casa(e.target.value)}
                             />
                         </div>
                     </div>

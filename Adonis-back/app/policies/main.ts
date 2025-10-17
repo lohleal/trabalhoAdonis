@@ -13,8 +13,8 @@
 */
 
 export const policies = {
-  MatriculaPolicy: () => import('#policies/matricula_policy'),
+  //MatriculaPolicy: () => import('#policies/matricula_policy'),
   AlunoPolicy: () => import('#policies/aluno_policy'),
-  DisciplinaPolicy: () => import('#policies/disciplina_policy'),
-  CursoPolicy: () => import('#policies/curso_policy')
+  //DisciplinaPolicy: () => import('#policies/disciplina_policy'),
+  //CursoPolicy: () => import('#policies/curso_policy')
 }

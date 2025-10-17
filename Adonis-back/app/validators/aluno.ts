@@ -14,6 +14,7 @@ export const createAluno = vine.compile(
     senha: vine.string().minLength(1).trim(),
   })
 )
+
 // Valida a atualização dos alunos (update)
 export const updateAluno = vine.compile(
   vine.object({
