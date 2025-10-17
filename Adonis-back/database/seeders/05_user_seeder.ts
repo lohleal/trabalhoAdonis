@@ -3,7 +3,7 @@ import User from '#models/user'
 
 export default class extends BaseSeeder {
   async run() {
-    // Write your database queries inside the run method
+
     await User.createMany([
       {
         fullName: 'Gerente',
@@ -12,11 +12,12 @@ export default class extends BaseSeeder {
         papel_id: 1,
       },
       {
-        fullName: 'Manuel Araújo Castro',
-        email: 'manuel@gmail.com',
-        password: '1234@5678',
+        fullName: 'Cliente',
+        email: 'cliente@gmail.com',
+        password: '2',
         papel_id: 2,
       },
+      
     ])
   }
 }

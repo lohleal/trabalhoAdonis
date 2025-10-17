@@ -13,6 +13,15 @@ export default class extends BaseSeeder {
             n_casa: 382,
             cpf: '113.464.129-01',
           },
+          {
+            nome: 'milly',
+            email: 'kamilly@gmail.com',
+            cidade: 'Matinhos',
+            estado: 'Paraná',
+            rua: 'flores',
+            n_casa: 348,
+            cpf: '113.464.129-01',
+          },
         ])
   }
 }

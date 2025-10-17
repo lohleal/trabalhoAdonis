@@ -52,7 +52,7 @@ export const permissions = [
     createDisciplina: true,
     editDisciplina: false,
     deleteDisciplina: false,
-    listAluno: true,
+    listAluno: false,
     viewAluno: true,
     createAluno: true,
     editAluno: false,
