@@ -36,7 +36,7 @@ export default function Login() {
         load 
         ?
             <Container className="d-flex justify-content-center mt-5">
-                <OrbitProgress variant="spokes" color="#32cd32" size="medium" text="" textColor="" />
+                <OrbitProgress variant="spokes" color="#4D0f0f" size="medium" text="" textColor="" />
             </Container>
         :
             <Container>
