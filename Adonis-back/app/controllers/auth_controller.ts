@@ -3,6 +3,7 @@ import User from '#models/user'
 import { loginValidator, registerValidator } from '#validators/auth'
 import logger from '@adonisjs/core/services/logger'
 import { permissions } from '../utils/permissoes.js'
+import Hash from '@adonisjs/core/services/hash'
 
 export default class AuthController {
   /**
@@ -49,22 +50,33 @@ export default class AuthController {
     try {
       const { email, password } = await request.validateUsing(loginValidator)
 
+      // Log para depuração
       logger.info(`${email} - ${password}`)
 
-      const veriuser = await User.findBy('email', email);
-      console.log('User encontrado?', veriuser ? veriuser.id : 'NÃO');  // Debug
-      const verifiedUser = await User.verifyCredentials(email, password);
+      const user = await User.findBy('email', email)
 
+      if (!user) {
+        return response.unauthorized({
+          message: 'Credenciais inválidas',
+        })
+      }
 
-      const user = await User.verifyCredentials(email, password)
+      // Verifica se a senha fornecida corresponde ao hash armazenado
+      const isValid = await Hash.verify(user.password, password)
 
-      // Criar token de acesso
+      if (!isValid) {
+        return response.unauthorized({
+          message: 'Credenciais inválidas',
+        })
+      }
+
       const token = await User.accessTokens.create(user, ['*'], {
         name: 'Login Token',
         expiresIn: '30 days',
       })
 
       logger.info(permissions[user.papel_id])
+
       return response.ok({
         message: 'Login realizado com sucesso',
         user: {

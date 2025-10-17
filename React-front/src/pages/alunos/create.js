@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { OrbitProgress } from "react-loading-indicators";
 import NavigationBar from '../../components/navigationbar';
-import { Label, Input, Select, Submit } from "./style";
+import { Label, LabelEndereco, Input, Select, Submit } from "./style";
 import { Client } from '../../api/client';
 import { getPermissions } from '../../service/PermissionService';
 import { getDataUser } from '../../service/UserService';
@@ -73,7 +73,7 @@ export default function CreateAluno() {
             <NavigationBar />
             {load
                 ? <Container className="d-flex justify-content-center mt-5">
-                    <OrbitProgress variant="spokes" color="#d6add6ff" size="medium" />
+                    <OrbitProgress variant="spokes" color="#4d0F0F" size="medium" />
                 </Container>
                 : <Container className='mt-2'>
                     <div>
@@ -111,7 +111,7 @@ export default function CreateAluno() {
                             />
                         </div>
 
-                        <Label>ENDEREÇO</Label>
+                        <LabelEndereco>ENDEREÇO</LabelEndereco>
                         <div className="flex-grow-1">
                             <Label>Cidade</Label>
                             <Input

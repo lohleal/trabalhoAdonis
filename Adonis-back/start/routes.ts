@@ -70,3 +70,4 @@ router.group(() => {
   router.get('/tokens', '#controllers/auth_controller.tokens').use(middleware.auth())
   router.post('/tokens', '#controllers/auth_controller.createToken').use(middleware.auth())
 }).prefix('/auth')
+

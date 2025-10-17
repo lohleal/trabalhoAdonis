@@ -44,11 +44,20 @@ export const Label = styled.label`
     margin-bottom: 5px;
 `
 
+export const LabelEndereco = styled.label`
+    display: block;
+    font-size: 18px;
+    color: #4d0f0f;
+    margin-top: 15px;
+    margin-bottom: 5px;
+`
+
+
 export const Submit = styled.input.attrs({ type: 'submit' })`
     box-sizing: border-box;
     width: 180px;
     height: 35px;
-    background-color: lightseagreen;
+    background-color: #4d0F0F;
     color: white;
     font-size: 16px;
     font-weight: bold;

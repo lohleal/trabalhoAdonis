@@ -82,6 +82,7 @@ export default class AlunoService {
       papel_id: 2, // aluno
     })
 
+
     // 2. Cria o aluno (sem conta_id)
     const aluno = await Aluno.create({
       nome,
@@ -133,3 +134,4 @@ export default class AlunoService {
     return aluno
   }
 }
+

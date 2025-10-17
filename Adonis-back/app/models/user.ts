@@ -48,3 +48,5 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   
 }
+
+
