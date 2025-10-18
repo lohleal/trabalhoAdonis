@@ -5,15 +5,16 @@ import Home from './pages/home'
 import Cursos from './pages/cursos'
 import CursosCreate from './pages/cursos/create'
 import CursosEdit from './pages/cursos/edit'
-import Disciplinas from './pages/disciplinas'
-import DisciplinasCreate from './pages/disciplinas/create'
-import DisciplinasEdit from './pages/disciplinas/edit'
+import Transferencias from './pages/transferencias'
+import TransferenciasCreate from './pages/transferencias/create'
+import TransferenciasEdit from './pages/transferencias/edit'
 import Alunos from './pages/alunos'
 import AlunosCreate from './pages/alunos/create'
 import AlunosEdit from './pages/alunos/edit'
 import Matriculas from './pages/matriculas'
 import MatriculasCreate from './pages/matriculas/create'
 import MatriculasEdit from './pages/matriculas/edit'
+import Transferencia from "./pages/transferencias"
 
 const router = createBrowserRouter([
     { 
@@ -45,16 +46,16 @@ const router = createBrowserRouter([
         element: <CursosEdit />,
     },
     {
-        path: "/disciplinas", 
-        element: <Disciplinas />,
+        path: "/transferencias", 
+        element: <Transferencias />,
     },
     {
-        path: "/disciplinas/create", 
-        element: <DisciplinasCreate />,
+        path: "/transferencias/create", 
+        element: <TransferenciasCreate />,
     },
     {
-        path: "/disciplinas/edit", 
-        element: <DisciplinasEdit />,
+        path: "/transferencias/edit", 
+        element: <TransferenciasEdit />,
     },
     {
         path: "/alunos", 
